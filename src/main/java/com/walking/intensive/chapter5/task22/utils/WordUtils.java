@@ -1,10 +1,10 @@
-package com.walking.intensive.chapter5.task22;
+package com.walking.intensive.chapter5.task22.utils;
 
 import java.util.List;
 import java.util.Locale;
 
-public class WordUtilities {
-    List<String> collectWordList(String line) {
+public class WordUtils {
+    public List<String> collectWordList(String line) {
         String[] lineArray = line.toLowerCase(Locale.ROOT)
                 .split("\\p{Punct}\s|\s|\n");
 
