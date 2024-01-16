@@ -14,6 +14,7 @@ public class Main {
     public static void main(String[] args) {
         Parallelepiped p1 = new Parallelepiped(1, -1, 0, 3, -3, 2);
         Parallelepiped p2 = new Parallelepiped(4.5, 0.5, 0.43, 2.5, -1.5, 2.43);
+        Parallelepiped p3 = new Parallelepiped(0, 0, 0, 2, 2, 2);
 
         List<Sphere> sphereList = new ArrayList<>();
         sphereList.add(new Sphere(1.86, -2.04, 0.92, 0.3));
@@ -23,6 +24,7 @@ public class Main {
         sphereList.add(new Sphere(2, 3.5, 1.23, 1.5));
         sphereList.add(new Sphere(1.53, -2.68, 0.5, 0.7));
         sphereList.add(new Sphere(3.3, -0.53, 2.32, 0.6));
+        sphereList.add(new Sphere(1, 1, 3, 1.9 - 0.9));
 
         System.out.println(p1);
 
@@ -34,6 +36,12 @@ public class Main {
 
         for (Sphere sphere: sphereList) {
             System.out.println(new GeometryAnalyzer(sphere, p2));
+        }
+
+        System.out.println("\n" + p3);
+
+        for (Sphere sphere: sphereList) {
+            System.out.println(new GeometryAnalyzer(sphere, p3));
         }
     }
 }

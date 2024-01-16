@@ -2,6 +2,7 @@ package com.walking.intensive.chapter5.task21.analyzer;
 
 import com.walking.intensive.chapter5.task21.objects.*;
 import com.walking.intensive.chapter5.task21.utils.GeometryUtils;
+import com.walking.intensive.chapter5.task21.utils.MathUtils;
 
 public class GeometryAnalyzer {
 
@@ -25,13 +26,14 @@ public class GeometryAnalyzer {
     // Проверка - находится ли центр сферы внутри параллелепипеда
     public boolean checkSphereCenterInside(Sphere sphere, Parallelepiped parallelepiped) {
         Point sphereCenter = sphere.getCenter();
+        MathUtils mathUtils = new MathUtils();
 
-        if (sphere.getCenter().getX() >= parallelepiped.getVertex(0).getX() &&
-                sphere.getCenter().getX() <= parallelepiped.getVertex(7).getX() &&
-                sphere.getCenter().getY() >= parallelepiped.getVertex(0).getY() &&
-                sphere.getCenter().getY() <= parallelepiped.getVertex(7).getY() &&
-                sphere.getCenter().getZ() >= parallelepiped.getVertex(0).getZ() &&
-                sphere.getCenter().getZ() <= parallelepiped.getVertex(7).getZ()) {
+        if (mathUtils.greaterOrEqual(sphere.getCenter().getX(), parallelepiped.getVertex(0).getX()) &&
+                mathUtils.lessOrEqual(sphere.getCenter().getX(), parallelepiped.getVertex(7).getX()) &&
+                mathUtils.greaterOrEqual(sphere.getCenter().getY(), parallelepiped.getVertex(0).getY()) &&
+                mathUtils.lessOrEqual(sphere.getCenter().getY(), parallelepiped.getVertex(7).getY()) &&
+                mathUtils.greaterOrEqual(sphere.getCenter().getZ(), parallelepiped.getVertex(0).getZ()) &&
+                mathUtils.lessOrEqual(sphere.getCenter().getZ(), parallelepiped.getVertex(7).getZ())) {
             checkPoint = sphereCenter;
             intersectionType = "Sphere center is inside Parallelepiped";
             return true;
@@ -46,7 +48,7 @@ public class GeometryAnalyzer {
         double distanceToVertex =
                 new GeometryUtils().getPointsDistance(sphere.getCenter(), closestVertex);
 
-        if (distanceToVertex <= sphere.getRadius()) {
+        if (new MathUtils().lessOrEqual(distanceToVertex, sphere.getRadius())) {
             checkPoint = closestVertex;
             intersectionType = "Parallelepiped vertex is inside Sphere";
             return true;
@@ -63,7 +65,7 @@ public class GeometryAnalyzer {
         if (oppositeEdgeClosestPoint != null) {
             double distanceToEdge =
                     new GeometryUtils().getSphereEdgeDistance(sphere, oppositeEdgeClosestPoint);
-            if (distanceToEdge <= sphere.getRadius()) {
+            if (new MathUtils().lessOrEqual(distanceToEdge, sphere.getRadius())) {
                 checkPoint = oppositeEdgeClosestPoint;
                 intersectionType = "Sphere intersects opposite edge of Parallelepiped";
                 return true;
@@ -81,7 +83,7 @@ public class GeometryAnalyzer {
         if (oppositeFaceClosestPoint != null) {
             double centerToFaceDistance =
                     new GeometryUtils().getSphereFaceDistance(sphere, oppositeFaceClosestPoint);
-            if (centerToFaceDistance <= sphere.getRadius()) {
+            if (new MathUtils().lessOrEqual(centerToFaceDistance, sphere.getRadius())) {
                 checkPoint = oppositeFaceClosestPoint;
                 intersectionType = "Sphere intersects opposite face of Parallelepiped";
                 return true;

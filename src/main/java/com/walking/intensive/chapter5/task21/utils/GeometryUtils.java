@@ -31,19 +31,20 @@ public class GeometryUtils {
     public Point getOppositeEdgeClosestPoint(Sphere sphere, Parallelepiped parallelepiped) {
         Point sphereCenter = sphere.getCenter();
         Point closestVertex = getClosestVertex(sphere, parallelepiped);
+        MathUtils mathUtils = new MathUtils();
 
-        if (sphereCenter.getX() >= parallelepiped.getVertex(0).getX() &&
-                sphereCenter.getX() <= parallelepiped.getVertex(7).getX()) {
+        if (mathUtils.greaterOrEqual(sphereCenter.getX(), parallelepiped.getVertex(0).getX()) &&
+                mathUtils.lessOrEqual(sphereCenter.getX(), parallelepiped.getVertex(7).getX())) {
             return new Point(sphereCenter.getX(), closestVertex.getY(), closestVertex.getZ());
         }
 
-        if (sphereCenter.getY() >= parallelepiped.getVertex(0).getY() &&
-                sphereCenter.getY() <= parallelepiped.getVertex(7).getY()) {
+        if (mathUtils.greaterOrEqual(sphereCenter.getY(), parallelepiped.getVertex(0).getY()) &&
+                mathUtils.lessOrEqual(sphereCenter.getY(), parallelepiped.getVertex(7).getY())) {
             return new Point(closestVertex.getX(), sphereCenter.getY(), closestVertex.getZ());
         }
 
-        if (sphereCenter.getZ() >= parallelepiped.getVertex(0).getZ() &&
-                sphereCenter.getZ() <= parallelepiped.getVertex(7).getZ()) {
+        if (mathUtils.greaterOrEqual(sphereCenter.getZ(), parallelepiped.getVertex(0).getZ()) &&
+                mathUtils.lessOrEqual(sphereCenter.getZ(), parallelepiped.getVertex(7).getZ())) {
             return new Point(closestVertex.getX(), closestVertex.getY(), sphereCenter.getZ());
         }
 
@@ -59,25 +60,26 @@ public class GeometryUtils {
     public Point getOppositeFaceClosestPoint(Sphere sphere, Parallelepiped parallelepiped) {
         Point sphereCenter = sphere.getCenter();
         Point closestVertex = getClosestVertex(sphere, parallelepiped);
+        MathUtils mathUtils = new MathUtils();
 
-        if (sphereCenter.getX() >= parallelepiped.getVertex(0).getX() &&
-                sphereCenter.getX() <= parallelepiped.getVertex(7).getX() &&
-                sphereCenter.getY() >= parallelepiped.getVertex(0).getY() &&
-                sphereCenter.getY() <= parallelepiped.getVertex(7).getY()) {
+        if (mathUtils.greaterOrEqual(sphereCenter.getX(), parallelepiped.getVertex(0).getX()) &&
+                mathUtils.lessOrEqual(sphereCenter.getX(), parallelepiped.getVertex(7).getX()) &&
+                mathUtils.greaterOrEqual(sphereCenter.getY(), parallelepiped.getVertex(0).getY()) &&
+                mathUtils.lessOrEqual(sphereCenter.getY(), parallelepiped.getVertex(7).getY())) {
             return new Point(sphereCenter.getX(), sphereCenter.getY(), closestVertex.getZ());
         }
 
-        if (sphereCenter.getY() >= parallelepiped.getVertex(0).getY() &&
-                sphereCenter.getY() <= parallelepiped.getVertex(7).getY() &&
-                sphereCenter.getZ() >= parallelepiped.getVertex(0).getZ() &&
-                sphereCenter.getZ() <= parallelepiped.getVertex(7).getZ()) {
+        if (mathUtils.greaterOrEqual(sphereCenter.getY(), parallelepiped.getVertex(0).getY()) &&
+                mathUtils.lessOrEqual(sphereCenter.getY(), parallelepiped.getVertex(7).getY()) &&
+                mathUtils.greaterOrEqual(sphereCenter.getZ(), parallelepiped.getVertex(0).getZ()) &&
+                mathUtils.lessOrEqual(sphereCenter.getZ(), parallelepiped.getVertex(7).getZ())) {
             return new Point(closestVertex.getX(), sphereCenter.getY(), sphereCenter.getZ());
         }
 
-        if (sphereCenter.getX() >= parallelepiped.getVertex(0).getX() &&
-                sphereCenter.getX() <= parallelepiped.getVertex(7).getX() &&
-                sphereCenter.getZ() >= parallelepiped.getVertex(0).getZ() &&
-                sphereCenter.getZ() <= parallelepiped.getVertex(7).getZ()) {
+        if (mathUtils.greaterOrEqual(sphereCenter.getX(), parallelepiped.getVertex(0).getX()) &&
+                mathUtils.lessOrEqual(sphereCenter.getX(), parallelepiped.getVertex(7).getX()) &&
+                mathUtils.greaterOrEqual(sphereCenter.getZ(), parallelepiped.getVertex(0).getZ()) &&
+                mathUtils.lessOrEqual(sphereCenter.getZ(), parallelepiped.getVertex(7).getZ())) {
             return new Point(sphereCenter.getX(), closestVertex.getY(), sphereCenter.getZ());
         }
 
